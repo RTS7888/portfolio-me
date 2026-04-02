@@ -1,26 +1,26 @@
 name: 'AI PR Review'
- 
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
- 
+
 jobs:
   review:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
       contents: read
- 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
- 
+
       - name: Run AI PR Review
         uses: RTS7888/gemini-pr-reviewer@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
-          max-comments: '10'
-          min-severity: 'medium'
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          max_comments: '10'
+          min_severity: 'medium'
